@@ -1,0 +1,21 @@
+# Web framework
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+python-multipart==0.0.20
+
+# LangGraph & LangChain
+langgraph==0.2.60
+langchain-core==0.3.28
+
+# LLM Provider
+groq==0.13.0
+
+# PDF Processing
+PyMuPDF==1.25.1
+
+# Data validation
+# pydantic==2.10.4
+pydantic-settings==2.7.0
+
+# Utilities
+python-dotenv==1.0.1
