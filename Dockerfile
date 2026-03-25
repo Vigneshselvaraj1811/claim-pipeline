@@ -1,25 +1,30 @@
 FROM python:3.11-slim
 
-# System deps for PyMuPDF
+# System dependencies for document AI pipelines
 RUN apt-get update && apt-get install -y \
+    build-essential \
     libmupdf-dev \
     libfreetype6-dev \
+    poppler-utils \
+    tesseract-ocr \
+    libgl1 \
+    libglib2.0-0 \
+    libjpeg62-turbo \
+    zlib1g \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-# Install Python deps first (layer caching)
+# install python deps first (cache friendly)
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
+# copy app
 COPY app/ ./app/
 
-# Non-root user for security
+# non-root user
 RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
 USER appuser
 
-EXPOSE 8000
-
-# Production: multiple workers, no reload
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
+# Render provides PORT env variable
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000} --workers 1"]
