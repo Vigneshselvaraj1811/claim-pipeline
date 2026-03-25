@@ -30,6 +30,7 @@ app.add_middleware(
     CORSMiddleware,
 allow_origins=[
     "https://gregarious-narwhal-91f451.netlify.app",
+    "https://gregarious-narwhal-91f451.netlify.app/",
     "http://localhost:3000",
     "http://localhost:5173",
     "http://localhost:8000",
