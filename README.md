@@ -65,7 +65,7 @@ pip install -r requirements.txt
 
 ```bash
 cp .env.example .env
-# Edit .env and add your ANTHROPIC_API_KEY
+# Edit .env and add your GROQ_API_KEY
 ```
 
 ### 3. Run
@@ -223,7 +223,7 @@ docker run -p 8000:8000 --env-file .env claim-pipeline
 1. Push repo to GitHub
 2. Create new Web Service on Render, connect repo
 3. Render auto-detects `render.yaml`
-4. Set `ANTHROPIC_API_KEY` in Render dashboard → Environment
+4. Set `GROQ_API_KEY` in Render dashboard → Environment
 
 ### Railway / Fly.io
 
@@ -233,7 +233,7 @@ railway up
 
 # Fly.io
 fly launch
-fly secrets set ANTHROPIC_API_KEY=sk-ant-...
+fly secrets set GROQ_API_KEY=gsk_z.....
 fly deploy
 ```
 
@@ -243,9 +243,8 @@ fly deploy
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `LLM_PROVIDER` | `anthropic` | `anthropic` or `openai` |
-| `ANTHROPIC_API_KEY` | — | Required for Anthropic |
-| `OPENAI_API_KEY` | — | Required for OpenAI |
+| `LLM_PROVIDER` | `groq` | `anthropic` or `openai` |
+| `GROQ_API_KEY` | — | Required for Anthropic |
 | `LLM_MODEL` | `claude-3-5-sonnet-20241022` | Model name |
 | `LLM_MAX_TOKENS` | `4096` | Max response tokens |
 | `PDF_IMAGE_DPI` | `150` | DPI for page rendering |
